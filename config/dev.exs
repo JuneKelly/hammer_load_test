@@ -6,8 +6,14 @@ use Mix.Config
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we use it
 # with brunch.io to recompile .js and .css sources.
+port_string = System.get_env("PORT")
+port = if port_string do
+  port_string |> String.to_integer
+else
+  4000
+end
 config :hammer_load_test, HammerLoadTestWeb.Endpoint,
-  http: [port: System.get_env("PORT") || 4000],
+  http: [port: port],
   debug_errors: true,
   code_reloader: true,
   check_origin: false,

@@ -1,0 +1,66 @@
+version: "2"
+
+
+
+services:
+  redis:
+    image: redis
+    command: redis-server --appendonly yes
+
+
+  phoenix-1:
+    image: bitwalker/alpine-elixir-phoenix:latest
+    volumes:
+      - .:/opt/app
+    environment:
+      PORT: '4001'
+      REDIS_HOST: 'redis'
+    ports:
+      - 4001:4001
+    depends_on:
+      - redis
+    working_dir: /opt/app
+    command: mix phx.server
+
+  phoenix-2:
+    image: bitwalker/alpine-elixir-phoenix:latest
+    volumes:
+      - .:/opt/app
+    environment:
+      PORT: '4002'
+      REDIS_HOST: 'redis'
+    ports:
+      - 4002:4002
+    depends_on:
+      - redis
+    working_dir: /opt/app
+    command: mix phx.server
+
+  phoenix-3:
+    image: bitwalker/alpine-elixir-phoenix:latest
+    volumes:
+      - .:/opt/app
+    environment:
+      PORT: '4003'
+      REDIS_HOST: 'redis'
+    ports:
+      - 4003:4003
+    depends_on:
+      - redis
+    working_dir: /opt/app
+    command: mix phx.server
+
+  phoenix-4:
+    image: bitwalker/alpine-elixir-phoenix:latest
+    volumes:
+      - .:/opt/app
+    environment:
+      PORT: '4004'
+      REDIS_HOST: 'redis'
+    ports:
+      - 4004:4004
+    depends_on:
+      - redis
+    working_dir: /opt/app
+    command: mix phx.server
+

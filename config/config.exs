@@ -21,7 +21,8 @@ config :logger, :console,
 
 # Configure Hammer
 config :hammer,
-  backend: {Hammer.Backend.Redis, []}
+  backend: {Hammer.Backend.Redis, [redix_config:
+                                   [host: System.get_env("REDIS_HOST")]]}
 
 
 # Import environment specific config. This must remain at the bottom
