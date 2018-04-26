@@ -9,7 +9,7 @@ defmodule HammerLoadTestWeb.PageController do
     ip = conn.remote_ip
     |> Tuple.to_list
     |> Enum.join(".")
-    case Hammer.check_rate("timestamp:#{ip}", 10_000, 500) do
+    case Hammer.check_rate("timestamp:#{ip}", 1_000, 500) do
       {:allow, _count} ->
         now = DateTime.utc_now()
         conn |> json(%{timestamp: "#{now}"})
