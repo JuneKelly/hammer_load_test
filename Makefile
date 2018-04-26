@@ -9,7 +9,7 @@ docker-compose.yml:
 
 
 run: docker-compose.yml
-	docker-compose up
+	docker-compose up --force-recreate
 
 
 load-test:
