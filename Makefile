@@ -12,4 +12,4 @@ run: docker-compose.yml
 	docker-compose up
 
 
-PHONY: default run
+PHONY: default run docker-compose.yml

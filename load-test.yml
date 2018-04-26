@@ -1,0 +1,31 @@
+
+config:
+  target: "http://localhost:8080"
+  phases:
+    - duration: 120
+      arrivalRate: 20
+
+scenarios:
+  - name: "Get timestamp"
+    flow:
+      # Get ten timestamps
+      - get:
+          url: "/timestamp"
+      - get:
+          url: "/timestamp"
+      - get:
+          url: "/timestamp"
+      - get:
+          url: "/timestamp"
+      - get:
+          url: "/timestamp"
+      - get:
+          url: "/timestamp"
+      - get:
+          url: "/timestamp"
+      - get:
+          url: "/timestamp"
+      - get:
+          url: "/timestamp"
+      - get:
+          url: "/timestamp"
