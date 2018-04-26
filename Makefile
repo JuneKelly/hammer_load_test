@@ -12,4 +12,8 @@ run: docker-compose.yml
 	docker-compose up
 
 
-PHONY: default run docker-compose.yml
+load-test:
+	artillery run load-test.yml
+
+
+PHONY: default run load-test

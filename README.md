@@ -1,19 +1,32 @@
-# HammerLoadTest
+# Hammer Load Test
 
-To start your Phoenix server:
+Sets up a cluster of phoenix servers, using Hammer and Redis for rate-limiting,
+and subjects them to a load test.
 
-  * Install dependencies with `mix deps.get`
-  * Install Node.js dependencies with `cd assets && npm install`
-  * Start Phoenix endpoint with `mix phx.server`
+## Dependencies
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+- docker
+- docker-compose
+- [artillery](https://artillery.io)
+- ruby (for the `erb` tool, should be present on most machines)
+- make
 
-Ready to run in production? Please [check our deployment guides](http://www.phoenixframework.org/docs/deployment).
 
-## Learn more
+## Setup
 
-  * Official website: http://www.phoenixframework.org/
-  * Guides: http://phoenixframework.org/docs/overview
-  * Docs: https://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
+```shell
+$ make run -B
+```
+
+
+## Perform the load test
+
+```shell
+$ make load-test
+```
+
+## Expectations
+
+We should ideally see no 500 responses from the test. If we have any,
+they're probably from the Hammer-Redis race-condition described here:
+https://github.com/ExHammer/hammer-backend-redis/issues/11
