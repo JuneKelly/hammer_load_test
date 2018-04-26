@@ -11,6 +11,16 @@ and subjects them to a load test.
 - ruby (for the `erb` tool, should be present on most machines)
 - make
 
+Tested on:
+```shell
+$ docker --version
+Docker version 18.03.0-ce, build 0520e24
+
+$ docker-compose --version
+docker-compose version 1.20.1, build 5d8c71b
+
+```
+
 
 ## Setup
 
