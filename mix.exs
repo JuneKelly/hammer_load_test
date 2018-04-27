@@ -38,7 +38,8 @@ defmodule HammerLoadTest.Mixfile do
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.11"},
       {:hammer, "4.0.0"},
-      {:hammer_backend_redis, "4.0.0"},
+      # {:hammer_backend_redis, "4.0.0"},
+      {:hammer_backend_redis, git: "git@github.com:ExHammer/hammer-backend-redis.git", branch: "sk-fix-race-condition"},
       {:cowboy, "~> 1.0"}
     ]
   end
