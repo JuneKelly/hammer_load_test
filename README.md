@@ -25,6 +25,7 @@ docker-compose version 1.20.1, build 5d8c71b
 ## Setup
 
 ```shell
+$ mix deps.get
 $ make run -B
 ```
 
