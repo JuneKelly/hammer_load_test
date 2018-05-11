@@ -9,13 +9,31 @@ defmodule HammerLoadTestWeb.PageController do
     ip = conn.remote_ip
     |> Tuple.to_list
     |> Enum.join(".")
-    case Hammer.check_rate("timestamp:#{ip}", 1_000, 500) do
-      {:allow, _count} ->
-        now = DateTime.utc_now()
-        conn |> json(%{timestamp: "#{now}"})
-      {:deny, _} ->
-        conn |> send_resp(429, "Too many requests")
+    # Do a custom-increment half of the time
+    if :rand.uniform() > 0.5 do
+      case Hammer.check_rate("timestamp:#{ip}", 1_000, 500) do
+        {:allow, _count} ->
+          respond_timestamp(conn)
+        {:deny, _limit} ->
+          respond_rate_limit_exceeded(conn)
+      end
+    else
+      case Hammer.check_rate_inc("timestamp:#{ip}", 1_000, 500, 2) do
+        {:allow, _count} ->
+          respond_timestamp(conn)
+        {:deny, _limit} ->
+          respond_rate_limit_exceeded(conn)
+      end
     end
+  end
+
+  defp respond_timestamp(conn) do
+    now = DateTime.utc_now()
+    conn |> json(%{timestamp: "#{now}"})
+  end
+
+  defp respond_rate_limit_exceeded(conn) do
+    conn |> send_resp(429, "Too many requests")
   end
 
 end
