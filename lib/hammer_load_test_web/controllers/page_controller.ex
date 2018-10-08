@@ -11,14 +11,14 @@ defmodule HammerLoadTestWeb.PageController do
     |> Enum.join(".")
     # Do a custom-increment half of the time
     if :rand.uniform() > 0.5 do
-      case Hammer.check_rate("timestamp:#{ip}", 1_000, 500) do
+      case Hammer.check_rate("timestamp:#{ip}", 1_000, 2000) do
         {:allow, _count} ->
           respond_timestamp(conn)
         {:deny, _limit} ->
           respond_rate_limit_exceeded(conn)
       end
     else
-      case Hammer.check_rate_inc("timestamp:#{ip}", 1_000, 500, 2) do
+      case Hammer.check_rate_inc("timestamp:#{ip}", 1_000, 2000, 2) do
         {:allow, _count} ->
           respond_timestamp(conn)
         {:deny, _limit} ->

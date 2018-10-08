@@ -20,10 +20,17 @@ config :logger, :console,
 
 
 # Configure Hammer
-config :hammer,
-  backend: {Hammer.Backend.Redis, [redix_config:
-                                   [host: System.get_env("REDIS_HOST")]]}
 
+# config :hammer,
+#   backend: {Hammer.Backend.ETS, [expiry_ms: 60_000 * 5,
+#                                  cleanup_interval_ms: 60_000 * 6
+#                                  ]}
+
+config :hammer,
+  backend: {Hammer.Backend.Redis, [expiry_ms: 60_000 * 5,
+                                   redix_config:
+                                    [host: System.get_env("REDIS_HOST")]
+                                  ]}
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

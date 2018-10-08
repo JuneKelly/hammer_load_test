@@ -37,8 +37,9 @@ defmodule HammerLoadTest.Mixfile do
       {:phoenix_html, "~> 2.10"},
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.11"},
-      {:hammer, "5.0.0"},
-      {:hammer_backend_redis, "5.0.0"},
+      {:hammer, "6.0.0-rc1"},
+      # {:hammer, git: "https://github.com/ExHammer/hammer.git", branch: "sk-default-max-pool-size-zero"},
+      {:hammer_backend_redis, "6.0.0-rc1"},
       {:cowboy, "~> 1.0"}
     ]
   end

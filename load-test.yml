@@ -2,7 +2,7 @@
 config:
   target: "http://localhost:8181"
   phases:
-    - duration: 120
+    - duration: 80
       arrivalRate: 20
 
 scenarios:
